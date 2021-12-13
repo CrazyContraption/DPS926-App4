@@ -24,12 +24,9 @@ export class RecipeViewPage {
 
     let currentRoute = this.route.snapshot;
 
-    console.log(currentRoute)
-
     if ('id' in currentRoute.params) { // Feched Recipe
       this.Saved = false;
       let id = parseInt(currentRoute.params.id);
-      console.log(id)
       if ((!id && id != 0) || isNaN(id)) {
         await this._modelService.popup("Recipe Error", "The id provided could not be resolved or found, please try again.", "Oops");
         return;
@@ -73,7 +70,6 @@ export class RecipeViewPage {
       this.awaitContent(attempt + 1);
     else {
       document.getElementById("waitBox").classList.add("hidden");
-      console.log(attempt, this.Recipe)
       if (attempt >= 10 && !document.getElementById("recipe")) {
         document.getElementById("toolbarAction").innerHTML = "";
         document.getElementById("recipeFeedback").classList.remove("hidden");

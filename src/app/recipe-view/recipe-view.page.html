@@ -116,18 +116,19 @@
         </ion-item>
       </ion-list>
 
-      <span *ngIf="Recipe?.instructions">
+      <span *ngIf="Recipe?.analyzedInstructions">
       <br>
       
       <ion-list>
         <h2>Instructions</h2>
-        <ion-item>
-          <ion-label>Vegetarian</ion-label>
-          <ion-label>{{ Recipe?.vegetarian ? "Yes" : "No" }}</ion-label>
+        <ion-item *ngFor="let step of Recipe.analyzedInstructions[0].steps"  style="padding-bottom:10px">
+          <h2>{{ step.number }}&nbsp;&nbsp;</h2>
+          <small>{{step.step}}</small>
         </ion-item>
       </ion-list>
       </span>
 
+      <h3>Debug JSON</h3>
       <p>
         {{Recipe | json}}
       </p>

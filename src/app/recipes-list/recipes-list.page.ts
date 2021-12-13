@@ -24,8 +24,6 @@ export class RecipesListPage implements OnInit {
     let currentRoute = this.route.snapshot;
     let id = parseInt(currentRoute.queryParams.id);
 
-    console.debug(currentRoute)
-
     if (!id || isNaN(id)) {
       await this._modelService.popup("Recipes Error", "The id provided could not be resolved or found, please try again.", "Oops");
       return;

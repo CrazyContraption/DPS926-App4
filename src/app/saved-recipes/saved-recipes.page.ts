@@ -38,7 +38,6 @@ export class SavedRecipesPage {
   }
 
   async viewRecipe(index: number) {
-    console.log(this.SavedRecipes)
     document.querySelectorAll(".savedRecipe")[index].classList.add("active");
     const actionSheet = await this.actionSheetController.create({
       header: this._modelService.normalise(this.SavedRecipes[index].title),
@@ -79,7 +78,6 @@ export class SavedRecipesPage {
 
       case "delete":
         document.querySelectorAll(".savedRecipe")[index].classList.add("hidden");
-        console.log(index)
         await this._modelService.sleep(701);
         this._modelService.clearStorage(this.SavedRecipes[index].id);
         //this.SavedRecipes.splice(index, 1);

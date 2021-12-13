@@ -46,7 +46,6 @@ export class RecipeBrowserPage {
       return;
     }
     this._modelService.autocomplete(this.SearchTerm).subscribe( async response => {
-      console.debug (response);
       if (response instanceof Error) {
         await this._modelService.popup('Search Error', '\nSomething went wrong, please try again!', 'Oops');
       } else {

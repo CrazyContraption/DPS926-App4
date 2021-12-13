@@ -91,7 +91,7 @@ export class SharedDataServiceService implements HttpInterceptor {
     ), retry(2)) as Observable<HttpEvent<any>>;
   }
 
-  private static _API_KEY: string = "1febd37b3f8e478eab12e086f470071d";
+  private static _API_KEY: string = "2fa953be9058495c8061f04d871144fa";
   private _URL: string = "https://api.spoonacular.com/";
   private _STORAGE_NAME: string = "SpoonacularSavedRecipes";
 
@@ -131,54 +131,6 @@ export class SharedDataServiceService implements HttpInterceptor {
     });
     return this._URL + route + builder.toString();
   }
-
-/*
-  createItem(item: IItem): Error | undefined {
-    for (let index = 0; index < this._items.length; index++) {
-      if (this._items[index].name == item.name) {
-        return new Error("ERROR:\nItem '" + item.name.replace('"','') + "' already exists! Please select a different name.");
-      }
-    }
-    if (item.price < 0)
-      return new Error("ERROR:\nPrice of '" + item.name.replace('"','') + "' is negative. Please enter a value of $0.00 or higher.");
-    this._items.push(item);
-    if (item.quantity < 0)
-      return new Error("WARNING:\nStock of '" + item.name.replace('"','') + "' is now negative, reflecting that stock is owed. Please get a manager to restock/reorder this product soon.");
-    return;
-  }
-
-  getItems(): IItem[] | undefined {
-      return this._items;
-  }
-
-  restockItem(itemName: string, quantityToAdd: number): Error | undefined {
-    for (let index = 0; index < this._items.length; index++) {
-      if (this._items[index].name == itemName) {
-        this._items[index].quantity += Math.floor(quantityToAdd);
-        if (this._items[index].quantity < 0)
-          return new Error("WARNING:\nStock of '" + itemName.replace('"','') + "' is now negative, reflecting that stock is owed. Please get a manager to restock/reorder this product soon.");
-        return;
-      }
-      
-    }
-    return new Error("ERROR:\nNo item named '" + itemName.replace('"','') + "' found! Please select a valid item.");
-  }
-
-  createPurchase(purchase: IPurchase): Error | undefined {
-    this._history.push(purchase);
-    return;
-  }
-
-  getHistory(): IPurchase[] | undefined {
-    return this._history;
-  }
-
-  getPurchase(index: number): IPurchase | Error {
-    if (index < 0 || index >= this._history.length)
-      return new Error("ERROR:\nNo item with index " + index + " was found.");
-    return this._history[index];
-  }
-  */
 
   getSavedRecipes(): ISavedRecipe[] {
     return this._saved_recipes;
@@ -290,7 +242,6 @@ export class SharedDataServiceService implements HttpInterceptor {
   clearStorage(id?: number) {
     if (id || id == 0) {
       console.warn("Clearing storage id #" + id);
-      console.debug(id, this._saved_recipes)
       if (id >= 0)
         for (let index = 0; index < this._saved_recipes.length; index++) {
           if (this._saved_recipes[index].id == id) {
