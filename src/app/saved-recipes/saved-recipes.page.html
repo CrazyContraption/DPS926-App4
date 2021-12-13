@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Saved Recipes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Saved Recipes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card id="helpBox" *ngIf="!SavedRecipes?.length > 0" class="animate-display hidden">
+    <ion-card-header>
+      <ion-card-subtitle>Saved Recipes</ion-card-subtitle>
+      <ion-card-title>What's Cookin', Good Lookin'?</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>
+        Once you've found a soulmate recipe, you can save it, and it'll appear here!
+        From here, you can view, edit, or remove any of your saved recipes even while you're offline.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let savedRecipe of SavedRecipes; index as index" (click)="viewRecipe(index)" class="savedRecipe animate-display hidden">
+    <img src="{{ savedRecipe?.image }}" />
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="recipe?.sourceName?.length > 0">{{ savedRecipe.sourceName }}</ion-card-subtitle>
+      <ion-card-title>{{ savedRecipe?.title }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

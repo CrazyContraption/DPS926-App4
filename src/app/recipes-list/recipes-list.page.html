@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Recipes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Saved Recipes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card id="searchFeedback" class="animate-display hidden">
+    <ion-card-header>
+      <ion-card-subtitle>Hmmm....</ion-card-subtitle>
+      <ion-card-title>We couldn't find anything for you. :(</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>
+        Believe it or not, we searched far and wide, and didn't find anything that we thought you'd like.
+        Perhaps try loosening up your search request a little bit?
+      </p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card id="loadBox" class="center animate-display hidden">
+    <ion-card-content>
+      <ion-spinner name="dots"></ion-spinner>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let foundRecipe of FoundRecipes; index as index" (click)="viewRecipe(index)" class="recipeResult animate-display hidden">
+    <img src="{{ foundRecipe.image }}" />
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="foundRecipe.SourceName?.length > 0">{{ foundRecipe.SourceName }}</ion-card-subtitle>
+      <ion-card-title>{{ foundRecipe.title }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

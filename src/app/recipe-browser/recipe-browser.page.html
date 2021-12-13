@@ -1,0 +1,94 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Recipe Browser
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Recipe Browser</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card id="searchBox" class="animate-display hidden">
+    <ion-card-header>
+      <ion-card-subtitle>Recipe Browser</ion-card-subtitle>
+      <ion-card-title>Good Food Won't Find Itself!</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-searchbar
+        [(ngModel)]="SearchTerm"
+        (ionInput)="loadSearch($event)"
+        (ionChange)="doSearch($event)"
+        (ionCancel)="cancelSearch($event)"
+        debounce="710"
+        inputmode="search"
+        enterkeyhint="search"
+        placeholder="Recipes, ingredients, or diets"
+        animated>
+      </ion-searchbar>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id="loadCard" class="center animate-display hidden">
+    <ion-card-content>
+      <ion-spinner name="dots"></ion-spinner>
+    </ion-card-content>
+  </ion-card>
+
+  <div id="loadCard" class="hidden animate-display">
+  </div>
+
+  <ion-card *ngFor="let result of Results" class="searchResult animate-display hidden" routerLink="/home/browser/{{SearchTerm}}" [queryParams]="{id: result.id}">
+    <ion-card-content>
+        <p>{{ (result.title.length>40)? (result.title | slice:0:40)+'...':(result.title) | titlecase }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id="infoBox" class="animate-display hidden">
+    <ion-card-header>
+      <ion-card-subtitle>Powered by Spoonacular</ion-card-subtitle>
+      <ion-card-title>A Perfect Meal Starts Today</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>
+        Search, Save, and Edit hundreds of curated online recipes.
+        Search by any term, ingredient, or ideal meal and simply browse until your heart's content.
+        Pick any recipe, any time, any place, and save it for later, even offline!
+      </p>
+      <br>
+      <p>
+        Learn more at <a href="https://spoonacular.com/food-api/">https://spoonacular.com/food-api/</a>
+        <br>
+        <br>
+        <ion-button expand="full"  shape="round" fill="outline" href="https://spoonacular.com/food-api/">Learn More</ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id="adminBox" *ngIf="ShowAdminStuff" class="animate-display hidden">
+    <ion-card-header>
+      <ion-card-subtitle>Admin Box</ion-card-subtitle>
+      <ion-card-title>Woah, such power, and it's all mine?</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>
+        Here's a set of development tools, use them with care~
+      </p>
+      <br>
+      <p>
+        <ion-button expand="full"  shape="round" fill="outline" (click)="doAdminThing('rr')">Random Recipe</ion-button>
+        <ion-button expand="full"  shape="round" fill="outline" (click)="doAdminThing('ps')">Print API Stats</ion-button>
+        <ion-button expand="full"  shape="round" fill="outline" (click)="doAdminThing('cs')">Clear Storage</ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  
+</ion-content>

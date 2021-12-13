@@ -1,0 +1,17 @@
+ion-card > img {
+    height: 100px;
+    width: 100%;
+    object-fit: none;
+}
+
+ion-card.savedRecipe {
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) !important;
+}
+
+#helpBox {
+    transform: translateY(calc(50vh - 100%));
+}
+
+ion-card.savedRecipe:active, ion-card.savedRecipe.active {
+    box-shadow: 0px 0px 10px 0px;
+}

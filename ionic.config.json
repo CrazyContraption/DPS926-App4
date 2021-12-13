@@ -1,0 +1,7 @@
+{
+  "name": "dps-926-app-4",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
